@@ -9,9 +9,9 @@
 #include <sys/stat.h>
 
 
-//#define FIFO       "/tmp/fifo0001.1"
+
 #define FIFO       "/tmp/fifo1"
-#define FIFOw       "/tmp/fifow"
+//#define FIFOw       "/tmp/fifow"
 
 
 
@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 {
     if (argc != 2)
     {
-        printf("USAGE: fifoclient <string>\n");
+        printf("Используйте: fifoclient <команда аргумент>\n");
         exit(1);
     }
 
@@ -32,15 +32,15 @@ int main(int argc, char *argv[])
 
 
 
-    unlink(FIFOw);
+//    unlink(FIFOw);
 
-    if((mkfifo(FIFOw, O_RDWR)) == -1)
+//    if((mkfifo(FIFOw, O_RDWR)) == -1)
 
-    {
-        qDebug()<<"Ошибка mkfifo FIFOw";
-        //return;
+//    {
+//        printf("Ошибка создания именого канала");
+//        //return;
 
-    }
+//    }
 
 
 
@@ -60,7 +60,7 @@ int wrtre_in_fifo(char * t)
 
     if ((fp = fopen(FIFO, "w")) == NULL)
     {
-        perror("fopen");
+        perror("Ошибка открытия именованого канала");
         exit(1);
     }
     fputs(t, fp);
@@ -69,30 +69,30 @@ int wrtre_in_fifo(char * t)
 }
 
 
-QString read_in_fifo()
-{
-    FILE *fp;
-    char buf[80];
+//QString read_in_fifo()
+//{
+//    FILE *fp;
+//    char buf[80];
 
 
-    fp = fopen(FIFOw, "r");
+//    fp = fopen(FIFOw, "r");
 
-    if(fp ==NULL)
-    {
-        return "err fopen";
-    }
-
-
-    if(fgets(buf, 80, fp) == NULL)
-    {
-        return "err fgets";
-    };
-
-    fclose(fp);
+//    if(fp ==NULL)
+//    {
+//        return "err fopen";
+//    }
 
 
-    QString r (buf);
-    return r;
-}
+//    if(fgets(buf, 80, fp) == NULL)
+//    {
+//        return "err fgets";
+//    };
+
+//    fclose(fp);
+
+
+//    QString r (buf);
+//    return r;
+//}
 
 
